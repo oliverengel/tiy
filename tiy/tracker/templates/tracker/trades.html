@@ -2,13 +2,18 @@
 {% load static  %}
 
 {% block content %}
-<h2>Startseite</h2>
+<h2>All Tardes</h2>
 
 <h3>Insert a new trade</h3>
-<form action="{% url 'tracker:createTrade' %}" method="POST">
+<form action="{% url 'tracker:createTrade'  %}" method="POST">
 	{% csrf_token  %}
 	{{ tradeForm  }}	
 	<input type="submit", name="Create">
 </form>
+
+<h3>List all trades</h3>
+{% for trade in trades %}
+<p>{{ trade }}</p>
+{% endfor %}
 
 {% endblock %}

@@ -1,0 +1,20 @@
+<html>
+	<head>
+		
+	</head>
+
+	<body>
+		<header>
+			<nav>
+				<a href="{% url 'tracker:index'  %}">Dashboard</a>				
+				<a href="{% url 'tracker:trades' %}">Trades</a>
+				<a href="{% url 'tracker:asset' %}">Assets</a>
+			</nav>
+		</header>		
+	
+	{% block content %}
+	{% endblock %}
+	</body>
+
+
+</html>

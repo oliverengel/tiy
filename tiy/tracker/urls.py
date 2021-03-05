@@ -9,5 +9,5 @@ urlpatterns =[
     path('trades', views.trades, name='trades'),	#overview of all trades, with filter
     path('asset', views.asset, name='asset'),		#one asset: A) balance sheet, B) history of trades
 
-#    path('addTrade', views.add_trade, name='add_trade'),
+    path('createTrade', views.createTrade, name='createTrade'),
 ]
