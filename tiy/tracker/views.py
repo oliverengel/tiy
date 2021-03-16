@@ -12,6 +12,7 @@ def index(request):
     return render(request, 'tracker/index.html', context)
 
 
+
 def trades(request):
     tradeForm = TradeForm()
     trades = Trade.objects.all()
@@ -19,8 +20,10 @@ def trades(request):
     return render(request, 'tracker/trades.html', context)
 
 
+
 def asset(request):
     return HttpResponse('overview of one asset')
+
 
 
 @require_http_methods(['POST'])
