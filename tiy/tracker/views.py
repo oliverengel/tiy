@@ -1,9 +1,11 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
+from django_tables2 import RequestConfig
 
 from .models import Trade
 from .forms import TradeForm
+from .tables import TradeTable
 
 # Create your views here.
 def index(request):
@@ -16,7 +18,9 @@ def index(request):
 def trades(request):
     tradeForm = TradeForm()
     trades = Trade.objects.all()
-    context = {'tradeForm': tradeForm, 'trades': trades}
+    table = TradeTable(trades)
+    RequestConfig(request).configure(table)
+    context = {'tradeForm': tradeForm, 'trades': trades, 'table': table}
     return render(request, 'tracker/trades.html', context)
 
 

@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['10.71.176.220', 'localhost']
 
 INSTALLED_APPS = [
     'tracker',
+    'django_tables2',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

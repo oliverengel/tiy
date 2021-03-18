@@ -1,4 +1,3 @@
-
 from django.forms import ModelForm, SelectDateWidget
 from django.forms.widgets import DateTimeInput
 import datetime

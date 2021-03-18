@@ -1,5 +1,6 @@
 {% extends 'tracker/layout.html'  %}	
 {% load static  %}
+{% load render_table from django_tables2 %}
 
 {% block content %}
 <h2>All Tardes</h2>
@@ -15,5 +16,7 @@
 {% for trade in trades %}
 <p>{{ trade }}</p>
 {% endfor %}
+
+<p>{% render_table table %}</p>
 
 {% endblock %}
