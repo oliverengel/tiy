@@ -1,0 +1,11 @@
+{% extends 'tracker/layout.html'  %}	
+{% load static  %}
+{% load render_table from django_tables2 %}
+
+{% block content %}
+<h2>Asset</h2>
+
+<h3>List all trades of this asset</h3>
+<p>{% render_table table %}</p>
+
+{% endblock %}

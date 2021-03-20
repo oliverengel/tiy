@@ -8,15 +8,13 @@
 <h3>Insert a new trade</h3>
 <form action="{% url 'tracker:createTrade'  %}" method="POST">
 	{% csrf_token  %}
+        <table>
 	{{ tradeForm.as_table }}	
-	<input type="submit", name="Create">
+	</table>
+        <input type="submit", name="Create", valie="Create">
 </form>
 
 <h3>List all trades</h3>
-{% for trade in trades %}
-<p>{{ trade }}</p>
-{% endfor %}
-
 <p>{% render_table table %}</p>
 
 {% endblock %}
