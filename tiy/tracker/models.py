@@ -39,11 +39,11 @@ class Trade(models.Model):
 
     date = models.DateTimeField()
 
-    asset_buy = models.ForeignKey(Asset, on_delete=models.PROTECT, related_name='asset_buy')
-    asset_buy_quantity = models.DecimalField(max_digits=14, decimal_places=8)
+    asset_buy = models.ForeignKey(Asset, on_delete=models.PROTECT, related_name='asset_buy', verbose_name='buy')
+    asset_buy_quantity = models.DecimalField(max_digits=14, decimal_places=8, verbose_name='buy quantity')
 
-    asset_sell = models.ForeignKey(Asset, on_delete=models.PROTECT, related_name='asset_sell')
-    asset_sell_quantity = models.DecimalField(max_digits=14, decimal_places=8)
+    asset_sell = models.ForeignKey(Asset, on_delete=models.PROTECT, related_name='asset_sell', verbose_name='sell')
+    asset_sell_quantity = models.DecimalField(max_digits=14, decimal_places=8, verbose_name='sell quantity')
 
     fee = models.ForeignKey(Asset, on_delete=models.PROTECT, related_name='fee')
     fee_quantity = models.DecimalField(max_digits=14, decimal_places=8)

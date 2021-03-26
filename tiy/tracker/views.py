@@ -49,6 +49,7 @@ def createTrade(request):
     tradeForm = TradeForm(request.POST)
 
     if tradeForm.is_valid():
-        tradeForm.save()
+        if tradeForm.cleaned_data['asset_buy'] != tradeForm.cleaned_data['asset_sell']:
+            tradeForm.save()
 
     return redirect('/trades') #HttpResponseRedirect('')

@@ -16,4 +16,10 @@ class TradeForm(ModelForm):
     class Meta:
         model = Trade
         fields = '__all__'
+        labels = {
+            'asset_buy': 'Buy',
+            'asset_buy_quantity': 'Buy quantity',
+            'asset_sell': 'Sell',
+            'asset_sell_quantity': 'Sell quantity',
+        }
 
