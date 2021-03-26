@@ -19,6 +19,26 @@ class Asset(models.Model):
 
 
 
+class AssetAccount(models.Model):
+    POSTING_TYPES = [
+        ('B','Buy'),
+        ('F','Fee'),
+        ('S','Sell'),
+    ]
+
+    date = models.DateTimeField()
+    asset = models.ForeignKey(Asset, on_delete=models.PROTECT, related_name='account_asset', verbose_name='asset')
+    asset_quantity = models.DecimalField(max_digits=14, decimal_places=8, verbose_name='quantity')
+    price = models.DecimalField(max_digits=14, decimal_places=8)
+    posting_type = models.CharField(max_length=1, choices=POSTING_TYPES)
+    open_quantity = models.DecimalField(max_digits=14, decimal_places=8, verbose_name='open')
+
+    def __str__(self):
+       # return self.date + ": " + self.posting_type + " " + self.asset
+        return self.date + ': %s %s' %(self.posting_type, self.asset)
+
+
+
 class Broker(models.Model):
     name = models.CharField(max_length=20)
 
@@ -35,8 +55,23 @@ class Exchange(models.Model):
 
 
 
-class Trade(models.Model):
+class ProfitAccount(models.Model):
+    date = models.DateTimeField()
+    asset = models.ForeignKey(Asset, on_delete=models.PROTECT, related_name='account_asset', verbose_name='asset')
+   # profit_in_asset_fifo
+   # profit_in_asset_percentage_fifo
+   # profit_in_euro_fifo
+   # profit_in_asset_avg
+   # profit_in_asset_percentage_avg
+   # profit_in_euro_avg
+   # price_asset_euro #exchange rate to fiat
 
+    def __str__(self):
+        return self.date + ': Profit booked for %s.' %self.asset
+
+
+
+class Trade(models.Model):
     date = models.DateTimeField()
 
     asset_buy = models.ForeignKey(Asset, on_delete=models.PROTECT, related_name='asset_buy', verbose_name='buy')
@@ -56,9 +91,3 @@ class Trade(models.Model):
         return "On " + str(self.date) + ": Bought " + str(self.asset_buy_quantity) + " " + str(self.asset_buy.symbol) + "."
 
 
-'''
-class TradeResult(models.Model): #Profit
-    trade = models.ForeignKey(Trade, on_delete=models.CASCADE)
-    profit = models.DecimalField(max_digits=14, decimal_places=8)
-    currency = models.ForeignKey(Asset, on_delete=models.PROETCT, related_name='profit_currency')
-'''
