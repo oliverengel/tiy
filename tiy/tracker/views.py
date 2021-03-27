@@ -6,6 +6,7 @@ from django_tables2 import RequestConfig
 from .models import Trade, Asset
 from .forms import TradeForm
 from .tables import TradeTable
+from .helper_functions import create_assetAccounts_afterTrade
 
 # Create your views here.
 def index(request):	#Dashboard
@@ -50,6 +51,16 @@ def createTrade(request):
 
     if tradeForm.is_valid():
         if tradeForm.cleaned_data['asset_buy'] != tradeForm.cleaned_data['asset_sell']:
+            date = tradeForm.cleaned_data['date']
+            trade = Trade.objects.get(date=date)
+            
+            # Save the trade
             tradeForm.save()
+
+            # Create 3 entries of the effected AssetAccounts
+            create_assetAccounts_afterTrade(trade)
+
+            # Create 1 entry of the ProfitAccount, because of the sell position in the trade
+                # if not fiat
 
     return redirect('/trades') #HttpResponseRedirect('')
