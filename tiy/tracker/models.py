@@ -67,7 +67,6 @@ class Trade(models.Model):
         return "On " + str(self.date) + ": Bought " + str(self.asset_buy_quantity) + " " + str(self.asset_buy.symbol) + "."
 
 
-
 class AssetAccount(models.Model):
     POSTING_TYPES = [
         ('B','Buy'),

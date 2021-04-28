@@ -3,9 +3,23 @@
 {% load render_table from django_tables2 %}
 
 {% block content %}
-<h2>Asset</h2>
+<h2>Asset Overview</h2>
 
-<h3>List all trades of this asset</h3>
-<p>{% render_table table %}</p>
+<h3>Asset Details</h3>
+<ul>
+    <li>Name: {{ asset.name }}</li>
+    <li>Symbol: {{ asset.symbol }}</li>
+    <li>Type: {{ asset.get_type_display }}</li> 
+</ul>
+
+<h3>List of Trades</h3>
+<p>{% render_table trades_table %}</p>
+
+<h3>Asset Account</h3>
+<p>{% render_table asset_account_table %}</p>
+
+<p>{% render_table asset_account_buy_table %}</p>
+
+<p>{% render_table asset_account_sell_table %}</p>
 
 {% endblock %}
