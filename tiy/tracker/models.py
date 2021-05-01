@@ -38,11 +38,11 @@ class Exchange(models.Model):
 class ProfitAccount(models.Model):
     date = models.DateTimeField()
     asset = models.ForeignKey(Asset, on_delete=models.PROTECT, related_name='profitAccount_asset', verbose_name='asset')
-   # profit_in_asset_fifo
-   # profit_in_asset_percentage_fifo
+   ## profit_in_asset_fifo
+   ## profit_in_asset_percentage_fifo
    # profit_in_euro_fifo
-   # profit_in_asset_avg
-   # profit_in_asset_percentage_avg
+   ## profit_in_asset_avg
+   ## profit_in_asset_percentage_avg
    # profit_in_euro_avg
    # price_asset_euro #exchange rate to fiat
 

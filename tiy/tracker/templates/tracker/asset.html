@@ -12,14 +12,14 @@
     <li>Type: {{ asset.get_type_display }}</li> 
 </ul>
 
-<h3>List of Trades</h3>
-<p>{% render_table trades_table %}</p>
-
 <h3>Asset Account</h3>
-<p>{% render_table asset_account_table %}</p>
-
+<h4>Buy</h4>
 <p>{% render_table asset_account_buy_table %}</p>
 
+<h4>Sell</h4>
 <p>{% render_table asset_account_sell_table %}</p>
+
+<h3>Trades</h3>
+<p>{% render_table trades_table %}</p>
 
 {% endblock %}

@@ -11,7 +11,10 @@ class TradeTable(tables.Table):
 
 
 class AssetAccountTable(tables.Table):
+    price_asset = tables.Column(footer="Total Open:")    
+    open_quantity = tables.Column(footer=lambda table: sum(x.open_quantity for x in table.data))
+    
     class Meta:
         model = AssetAccount
         exclude = {'id', 'trade', 'asset'}
-        sequence = ('date', 'posting_type', 'asset_quantity', 'price', 'price_asset', 'open_quantity')
+        sequence = ('date', 'asset_quantity', 'price', 'price_asset', 'open_quantity')

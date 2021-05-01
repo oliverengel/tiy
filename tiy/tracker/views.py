@@ -41,26 +41,20 @@ def asset(request, asset_symbol):
 
     trades = Trade.objects.filter(asset_buy=asset) | Trade.objects.filter(asset_sell=asset)
     trades_table = TradeTable(trades)
-   # RequestConfig(request).configure(trades_table)
 
     asset_account = AssetAccount.objects.filter(asset=asset)
-    asset_account_table = AssetAccountTable(asset_account)
-    RequestConfig(request).configure(asset_account_table)
 
     asset_account_buy = [x for x in asset_account if x.posting_type == "B"]
     asset_account_buy_table = AssetAccountTable(asset_account_buy)
-    #RequestConfig(request).configure(asset_account_buy_table)
 
     asset_account_sell = [x for x in asset_account if x.posting_type == "S"]
     asset_account_sell_table = AssetAccountTable(asset_account_sell)
-   # RequestConfig(request).configure(asset_account_sell_table)
 
     for table in [trades_table, asset_account_buy_table, asset_account_sell_table]:
         RequestConfig(request).configure(table)
 
     context = {'asset': asset,
                'trades_table': trades_table,
-               'asset_account_table': asset_account_table,
                'asset_account_buy_table': asset_account_buy_table,
                'asset_account_sell_table': asset_account_sell_table,
                }
@@ -86,6 +80,8 @@ def createTrade(request):
             create_assetAccounts_afterTrade(trade)
 
             # Create 1 entry of the ProfitAccount, because of the sell position in the trade
-                # if not fiat
+                # if not asset_sell != fiat
+            if trade.asset_sell.type != 'FI':
+                pass
 
     return redirect('/trades') #HttpResponseRedirect('')
